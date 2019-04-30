@@ -1,0 +1,507 @@
+[
+  {
+    "name": "Genre",
+    "schema": {
+      "fields": [
+        {
+          "name": "GenreId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraints": { "maxLength": 120 }
+        }
+      ],
+      "primaryKey": "GenreId"
+    }
+  },
+  {
+    "name": "MediaType",
+    "schema": {
+      "fields": [
+        {
+          "name": "MediaTypeId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraints": { "maxLength": 120 }
+        }
+      ],
+      "primaryKey": "MediaTypeId"
+    }
+  },
+  {
+    "name": "Artist",
+    "schema": {
+      "fields": [
+        {
+          "name": "ArtistId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraints": { "maxLength": 120 }
+        }
+      ],
+      "primaryKey": "ArtistId"
+    }
+  },
+  {
+    "name": "Album",
+    "schema": {
+      "fields": [
+        {
+          "name": "AlbumId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Title",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 160 }
+        },
+        {
+          "name": "ArtistId",
+          "type": "integer",
+          "constraints": { "required": true }
+        }
+      ],
+      "primaryKey": "AlbumId",
+      "foreignKeys": [
+        {
+          "name": "AlbumArtistId",
+          "fields": "ArtistId",
+          "reference": {
+            "resource": "Artist",
+            "fields": "ArtistId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Track",
+    "schema": {
+      "fields": [
+        {
+          "name": "TrackId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 200 }
+        },
+        {
+          "name": "AlbumId",
+          "type": "integer"
+        },
+        {
+          "name": "MediaTypeId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "GenreId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Composer",
+          "type": "string",
+          "constraints": { "maxLength": 220 }
+        },
+        {
+          "name": "Milliseconds",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Bytes",
+          "type": "integer"
+        },
+        {
+          "name": "UnitPrice",
+          "type": "decimal(10,2)",
+          "constraints": { "required": true }
+        }
+      ],
+      "primaryKey": "TrackId",
+      "foreignKeys": [
+        {
+          "name": "TrackAlbumId",
+          "fields": "AlbumId",
+          "reference": {
+            "resource": "Album",
+            "fields": "AlbumId"
+          }
+        },
+        {
+          "name": "TrackGenreId",
+          "fields": "GenreId",
+          "reference": {
+            "resource": "Genre",
+            "fields": "GenreId"
+          }
+        },
+        {
+          "name": "TrackMediaTypeId",
+          "fields": "MediaTypeId",
+          "reference": {
+            "resource": "MediaType",
+            "fields": "MediaTypeId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Employee",
+    "schema": {
+      "fields": [
+        {
+          "name": "EmployeeId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "LastName",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 20 }
+        },
+        {
+          "name": "FirstName",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 30 }
+        },
+        {
+          "name": "Title",
+          "type": "string",
+          "constraints": { "maxLength": 30 }
+        },
+        {
+          "name": "ReportsTo",
+          "type": "integer"
+        },
+        {
+          "name": "BirthDate",
+          "type": "datetime"
+        },
+        {
+          "name": "HireDate",
+          "type": "datetime"
+        },
+        {
+          "name": "Address",
+          "type": "string",
+          "constraints": { "maxLength": 70 }
+        },
+        {
+          "name": "City",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "State",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "Country",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "PostalCode",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "Phone",
+          "type": "string",
+          "constraints": { "maxLength": 24 }
+        },
+        {
+          "name": "Fax",
+          "type": "string",
+          "constraints": { "maxLength": 24 }
+        },
+        {
+          "name": "Email",
+          "type": "string",
+          "constraints": { "maxLength": 60 }
+        }
+      ],
+      "primaryKey": "EmployeeId",
+      "foreignKeys": [
+        {
+          "name": "EmployeeReportsTo",
+          "fields": "ReportsTo",
+          "reference": {
+            "resource": "Employee",
+            "fields": "EmployeeId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Customer",
+    "schema": {
+      "fields": [
+        {
+          "name": "CustomerId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "FirstName",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 40 }
+        },
+        {
+          "name": "LastName",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 20 }
+        },
+        {
+          "name": "Company",
+          "type": "string",
+          "constraints": { "maxLength": 80 }
+        },
+        {
+          "name": "Address",
+          "type": "string",
+          "constraints": { "maxLength": 70 }
+        },
+        {
+          "name": "City",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "State",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "Country",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "PostalCode",
+          "type": "string",
+          "constraints": { "maxLength": 10 }
+        },
+        {
+          "name": "Phone",
+          "type": "string",
+          "constraints": { "maxLength": 24 }
+        },
+        {
+          "name": "Fax",
+          "type": "string",
+          "constraints": { "maxLength": 24 }
+        },
+        {
+          "name": "Email",
+          "type": "string",
+          "constraints": { "required": true, "maxLength": 60 }
+        },
+        {
+          "name": "SupportRepId",
+          "type": "integer",
+          "nullable": true
+        }
+      ],
+      "primaryKey": "CustomerId",
+      "foreignKeys": [
+        {
+          "name": "CustomerSupportRepId",
+          "fields": "SupportRepId",
+          "reference": {
+            "resource": "Employee",
+            "fields": "EmployeeId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Invoice",
+    "schema": {
+      "fields": [
+        {
+          "name": "InvoiceId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "CustomerId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "InvoiceDate",
+          "type": "datetime",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "BillingAddress",
+          "type": "string",
+          "constraints": { "maxLength": 70 }
+        },
+        {
+          "name": "BillingCity",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "BillingState",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "BillingCountry",
+          "type": "string",
+          "constraints": { "maxLength": 40 }
+        },
+        {
+          "name": "BillingPostalCode",
+          "type": "string",
+          "constraints": { "maxLength": 10 }
+        },
+        {
+          "name": "Total",
+          "type": "decimal(10,2)",
+          "constraints": { "required": true }
+        }
+      ],
+      "primaryKey": "InvoiceId",
+      "foreignKeys": [
+        {
+          "name": "InvoiceCustomerId",
+          "fields": "CustomerId",
+          "reference": {
+            "resource": "Customer",
+            "fields": "CustomerId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "InvoiceLine",
+    "schema": {
+      "fields": [
+        {
+          "name": "InvoiceLineId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "InvoiceId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "TrackId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "UnitPrice",
+          "type": "decimal(10,2)",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Quantity",
+          "type": "integer",
+          "constraints": { "required": true }
+        }
+      ],
+      "primaryKey": "InvoiceLineId",
+      "foreignKeys": [
+        {
+          "name": "InvoiceLineInvoiceId",
+          "fields": "InvoiceId",
+          "reference": {
+            "resource": "Invoice",
+            "fields": "InvoiceId"
+          }
+        },
+        {
+          "name": "InvoiceLineTrackId",
+          "fields": "TrackId",
+          "reference": {
+            "resource": "Track",
+            "fields": "TrackId"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Playlist",
+    "schema": {
+      "fields": [
+        {
+          "name": "PlaylistId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "constraints": { "maxLength": 120 }
+        }
+      ],
+      "primaryKey": "PlaylistId"
+    }
+  },
+  {
+    "name": "PlaylistTrack",
+    "schema": {
+      "fields": [
+        {
+          "name": "PlaylistId",
+          "type": "integer",
+          "constraints": { "required": true }
+        },
+        {
+          "name": "TrackId",
+          "type": "integer",
+          "constraints": { "required": true }
+        }
+      ],
+      "primaryKey": ["PlaylistId", "TrackId"],
+      "foreignKeys": [
+        {
+          "name": "PlaylistTrackPlaylistId",
+          "fields": "PlaylistId",
+          "reference": {
+            "resource": "Playlist",
+            "fields": "PlaylistId"
+          }
+        },
+        {
+          "name": "PlaylistTrackTrackId",
+          "fields": "TrackId",
+          "reference": {
+            "resource": "Track",
+            "fields": "TrackId"
+          }
+        }
+      ]
+    }
+  }
+]
