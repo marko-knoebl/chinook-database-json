@@ -18,7 +18,7 @@ node ./scripts/createSqlFiles.js
 
 Currently this will produce 2 quite similar files:
 
-- `createDbIsoAnsi.sql` - supported by _PostgreSQL_, _SQLite_
-- `createDbMySql.sql` - supported by _MySQL_, _SQLite_
+- `dist/createDbIsoAnsi.sql` - supported by _PostgreSQL_, _SQLite_
+- `dist/createDbMySql.sql` - supported by _MySQL_, _SQLite_
 
 The only difference between these two files is the former will use `TIMESTAMP` where the latter uses `DATETIME`.
